@@ -1,0 +1,34 @@
+# Runs the all the tests written in the test folder.
+
+# get flutter container
+container:
+  image: cirrusci/flutter:latest
+
+
+# Analyzes and Lints the dart code according to analysis_options.yml
+analyze_task:
+  name: Analyze and Lint
+  script: flutter analyze
+
+  
+test_task:
+  name: Running Local Tests
+  only_if: $CIRRUS_BRANCH != 'main'
+  depends_on:
+    - Analyze and Lint
+  pub_cache:
+    folder: ~/.pub-cache
+#  runs ```flutter pub get ``` before running the tests in the test/ folder
+#  runs additional null assertions on the boundaries of migrated and un-migrated code.
+  test_script: flutter test --pub --null-assertions
+
+test_task:
+  name: LAST CHECKPOINT
+  only_if: $CIRRUS_BRANCH == 'production' 
+  depends_on:
+    - Analyze and Lint
+  pub_cache:
+    folder: ~/.pub-cache
+#  runs ```flutter pub get ``` before running the tests in the test/ folder
+#  runs additional null assertions on the boundaries of migrated and un-migrated code.
+  test_script: flutter test --null-assertions
