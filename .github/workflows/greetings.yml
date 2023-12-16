@@ -1,0 +1,59 @@
+name: Greetings
+
+on: 
+  pull_request_target:
+    types: [opened]
+  issues:
+    types: [opened]
+
+jobs:
+  greeting:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+    - name: GET CONTEXT
+      run: echo "$EVENT_CONTEXT"
+      env:
+        EVENT_CONTEXT: ${{ toJson(github.event) }}
+    - uses: actions/first-interaction@v1
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        issue-message: |
+            Hi ${{ github.event.issue.user.login }},
+
+            Thanks for raising your first issue! 😊 We're so glad to have you contributing to the project 🤗.
+
+            We will take a look at your issue and it looks like a good first issue to work on 💡. We will assign it to a contributor and progress will be updated here to close this issue.
+
+            In the meanwhile, if you have a solution to this issue you can contribute to this project, helping us resolve this issue.
+
+            Here are a few things to keep in mind when working on the issue:
+
+            - Make sure to follow the project's coding guidelines 📝.
+            - Please test your changes before submitting them 🔬.
+            - If you get stuck, don't hesitate to ask for help 🙋‍♂️.
+            I'm looking forward to seeing your progress! 🚀
+
+            Thanks,
+            Maverick
+            |CODERS Asylum|
+            
+        pr-message: |
+            Hi ${{ github.event.pull_request.user.login }},
+
+            Welcome to the project! We're so glad to have you on board 🤗.
+
+            We're an open-source project, which means that we're built by people like you, who are passionate about making great software 💻. We're always looking for new contributors, so no matter what your skill level is, we'd love to have you help out 🙋‍♀️.
+
+            Here are a few things you can do to get started:
+
+            - Read the project documentation 📚. This will give you a good overview of the project and how it works.
+            - Look for issues that are labelled as "beginner-friendly" or "good first issue" 💡. These are issues that are relatively easy to fix and don't require a lot of prior knowledge.
+            - Join the project's chat or forum 💬. This is a great way to ask questions and get help from other contributors.
+            We're always happy to help new contributors get started, so don't hesitate to reach out if you have any questions 🙋‍♂️.
+
+            Thanks,
+            Maverick
+            |CODERS Asylum|
