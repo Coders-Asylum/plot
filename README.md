@@ -11,13 +11,17 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
+#Plot
+
+[![codecov](https://codecov.io/gh/Coders-Asylum/plot/graph/badge.svg?token=JYsuCxnZw7)](https://codecov.io/gh/Coders-Asylum/plot)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FCoders-Asylum%2Fplot.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FCoders-Asylum%2Fplot?ref=badge_shield)
+
+
+
 TODO: Put a short description of the package here that helps potential users
 know whether this package might be useful for them.
 
 ## Features
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FCoders-Asylum%2Fplot.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FCoders-Asylum%2Fplot?ref=badge_shield)
-
-
 TODO: List what your package can do. Maybe include images, gifs, or videos.
 
 ## Getting started
