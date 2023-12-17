@@ -19,7 +19,6 @@ pr_test_task:
     CODEV_COV_TOKEN: ENCRYPTED[a67f0040a7411f8609a74b9ac81079092f3b3425cae77b6dde94cb7c5f3cd9bad2744e7485b2a25f5a35b805edc5e26e]
   depends_on:
     - Analyze and Lint
-    - Installing LCOV
   pub_cache:
     folder: ~/.pub-cache
   codecov_uploader_cache:
