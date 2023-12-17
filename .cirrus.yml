@@ -26,6 +26,7 @@ pr_test_task:
     fingerprint_script:
       - sudo apt-get update
       - echo Y | sudo apt-get install gpg-agent
+      - mkdir codecov
       - curl https://keybase.io/codecovsecurity/pgp_keys.asc | gpg --no-default-keyring --keyring trustedkeys.gpg --import 
       - curl -Os https://uploader.codecov.io/latest/linux/codecov.SHA256SUM
       - curl -Os https://uploader.codecov.io/latest/linux/codecov.SHA256SUM.sig
