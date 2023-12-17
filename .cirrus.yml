@@ -41,7 +41,7 @@ pr_test_task:
   activate_coverage_script: dart pub global activate coverage
   convert_to_lcov_script: dart pub global run coverage:format_coverage --packages=.dart_tool/package_config.json --report-on=lib --lcov -o ./test/coverage/report/lcov.info -i ./test/coverage/report/
   sanitize_lcov_report_script: lcov --remove test/coverage/report/lcov.info 'lib/*/*.g.dart' 'lib/*/*.part.dart' 'lib/generated/*.dart' 'lib/generated/*/*.dart' -o test/coverage/report/lcov.info 
-  upload_to_codecov_script: ./codecov -t $CODEV_COV_TOKEN -f ./test/coverage/report/lcov.info
+  Rita_Repoter_script: ./codecov -t $CODEV_COV_TOKEN -f ./test/coverage/report/lcov.info
       
 test_task:
   name: LAST CHECKPOINT
