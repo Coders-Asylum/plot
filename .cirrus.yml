@@ -8,23 +8,38 @@ container:
 # Analyzes and Lints the dart code according to analysis_options.yml
 analyze_task:
   name: Analyze and Lint
-  install_script: dart pub get
-  format_script: dart format .
-  analyze_script: dart analyze --fatal-infos
+  install_dependency_script: dart pub get
+  format_code_script: dart format .
+  analyze_code_script: dart analyze --fatal-infos
 
 pr_test_task:
   name: Running Local Tests
   only_if: $CIRRUS_PR != ''
+  env: 
+    CODEV_COV_TOKEN: ENCRYPTED[a67f0040a7411f8609a74b9ac81079092f3b3425cae77b6dde94cb7c5f3cd9bad2744e7485b2a25f5a35b805edc5e26e]
   depends_on:
     - Analyze and Lint
     - Installing LCOV
   pub_cache:
     folder: ~/.pub-cache
-#  runs ```flutter pub get ``` before running the tests in the test/ folder
-#  runs additional null assertions on the boundaries of migrated and un-migrated code.
-  install_lcov: sudo apt-get install -y lcov
-  test_script: flutter test --pub --null-assertions --coverage=./test/coverage/report/
-
+  codecov_uploader_cache:
+    folder: ./codecov
+    fingerprint_script:
+      - curl https://keybase.io/codecovsecurity/pgp_keys.asc | gpg --no-default-keyring --import # One-time step
+      # - curl -Os https://uploader.codecov.io/latest/linux/codecov // THIS IS ADDED IN INSTALL_SCRIPT
+      - curl -Os https://uploader.codecov.io/latest/linux/codecov.SHA256SUM
+      - curl -Os https://uploader.codecov.io/latest/linux/codecov.SHA256SUM.sig
+      - gpg --verify codecov.SHA256SUM.sig codecov.SHA256SUM
+      - shasum -a 256 -c codecov.SHA256SUM
+    install_script:
+      - curl -Os https://uploader.codecov.io/latest/linux/codecov
+  install_lcov_script: sudo apt-get install -y lcov
+  test_script: flutter test --pub --null-assertions --coverage --coverage-path=test/coverage/report/lcov.info
+  activate_coverage_script: dart pub global activate coverage
+  convert_to_lcov_script: dart pub global run coverage:format_coverage --packages=.dart_tool/package_config.json --report-on=lib --lcov -o ./test/coverage/report/lcov.info -i ./test/coverage/report/
+  sanitize_lcov_report_script: lcov --remove test/coverage/report/lcov.info 'lib/*/*.g.dart' 'lib/*/*.part.dart' 'lib/generated/*.dart' 'lib/generated/*/*.dart' -o test/coverage/report/lcov.info 
+  upload_to_codecov_script: ./codecov -t $CODEV_COV_TOKEN -f ./test/coverage/report/lcov.info
+      
 test_task:
   name: LAST CHECKPOINT
   only_if: $CIRRUS_BRANCH == 'production' 
