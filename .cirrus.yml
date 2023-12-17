@@ -22,7 +22,7 @@ pr_test_task:
   pub_cache:
     folder: ~/.pub-cache
   codecov_uploader_cache:
-    folder: ~/codecov
+    folder: codecov
     fingerprint_script:
       - sudo apt-get update
       - echo Y | sudo apt-get install gpg-agent
