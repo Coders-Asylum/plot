@@ -32,8 +32,8 @@ pr_test_task:
       - curl -Os https://uploader.codecov.io/latest/linux/codecov.SHA256SUM.sig
       - ls -a 
       - gpgv codecov.SHA256SUM.sig codecov.SHA256SUM
-      - shasum -a 256 -c 'codecov.SHA256SUM'
       - shasum -h
+      - shasum -a 256 -c 'codecov.SHA256SUM'
     populate_script:
       - curl -Os https://uploader.codecov.io/latest/linux/codecov
       - chmod +x codecov
