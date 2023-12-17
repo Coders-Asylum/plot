@@ -8,19 +8,22 @@ container:
 # Analyzes and Lints the dart code according to analysis_options.yml
 analyze_task:
   name: Analyze and Lint
-  script: dart analyze --fatal-infos
+  install_script: dart pub get
+  format_script: dart format .
+  analyze_script: dart analyze --fatal-infos
 
-  
-test_task:
+pr_test_task:
   name: Running Local Tests
-  only_if: $CIRRUS_BRANCH != 'main'
+  only_if: $CIRRUS_PR != ''
   depends_on:
     - Analyze and Lint
+    - Installing LCOV
   pub_cache:
     folder: ~/.pub-cache
 #  runs ```flutter pub get ``` before running the tests in the test/ folder
 #  runs additional null assertions on the boundaries of migrated and un-migrated code.
-  test_script: flutter test --pub --null-assertions
+  install_lcov: sudo apt-get install -y lcov
+  test_script: flutter test --pub --null-assertions --coverage=./test/coverage/report/
 
 test_task:
   name: LAST CHECKPOINT
