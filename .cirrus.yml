@@ -23,18 +23,17 @@ pr_test_task:
     folder: ~/.pub-cache
   codecov_uploader_cache:
     folder: ./codecov
+    populate_script:
+      - curl -Os https://uploader.codecov.io/latest/linux/codecov
     fingerprint_script:
       - gpg --version
       - sudo apt-get update
       - echo Y | sudo apt-get install gpg-agent
       - curl https://keybase.io/codecovsecurity/pgp_keys.asc | gpg --no-default-keyring --keyring trustedkeys.gpg --import # One-time step
-      # - curl -Os https://uploader.codecov.io/latest/linux/codecov // THIS IS ADDED IN INSTALL_SCRIPT
       - curl -Os https://uploader.codecov.io/latest/linux/codecov.SHA256SUM
       - curl -Os https://uploader.codecov.io/latest/linux/codecov.SHA256SUM.sig
       - gpgv codecov.SHA256SUM.sig codecov.SHA256SUM
       - shasum -a 256 -c codecov.SHA256SUM
-    install_script:
-      - curl -Os https://uploader.codecov.io/latest/linux/codecov
   install_lcov_script: sudo apt-get install -y lcov
   test_script: flutter test --pub --null-assertions --coverage --coverage-path=test/coverage/report/lcov.info
   activate_coverage_script: dart pub global activate coverage
