@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions: write-all
     steps:
-    - uses: actions/labeler@v2
+    - uses: actions/labeler@v5
       with:
         repo-token: "${{ secrets.GITHUB_TOKEN }}"
   # add a triage label to newly created issues.
