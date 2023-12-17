@@ -24,6 +24,7 @@ pr_test_task:
   codecov_uploader_cache:
     folder: ~/codecov
     fingerprint_script:
+      - sudo apt-get update
       - echo Y | sudo apt-get install gpg-agent
       - curl https://keybase.io/codecovsecurity/pgp_keys.asc | gpg --no-default-keyring --keyring trustedkeys.gpg --import # One-time step
       - curl -Os https://uploader.codecov.io/latest/linux/codecov.SHA256SUM
