@@ -15,6 +15,8 @@ TODO: Put a short description of the package here that helps potential users
 know whether this package might be useful for them.
 
 ## Features
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FCoders-Asylum%2Fplot.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FCoders-Asylum%2Fplot?ref=badge_shield)
+
 
 TODO: List what your package can do. Maybe include images, gifs, or videos.
 
@@ -37,3 +39,7 @@ const like = 'sample';
 TODO: Tell users more about the package: where to find more information, how to
 contribute to the package, how to file issues, what response they can expect
 from the package authors, and more.
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FCoders-Asylum%2Fplot.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FCoders-Asylum%2Fplot?ref=badge_large)
