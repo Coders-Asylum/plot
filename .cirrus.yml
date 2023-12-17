@@ -25,6 +25,8 @@ pr_test_task:
     folder: ./codecov
     fingerprint_script:
       - gpg --version
+      - lsb_release -a
+      - sudo apt-get update
       - curl https://keybase.io/codecovsecurity/pgp_keys.asc | gpg --no-default-keyring --keyring trustedkeys.gpg --import # One-time step
       # - curl -Os https://uploader.codecov.io/latest/linux/codecov // THIS IS ADDED IN INSTALL_SCRIPT
       - curl -Os https://uploader.codecov.io/latest/linux/codecov.SHA256SUM
