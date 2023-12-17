@@ -29,8 +29,9 @@ pr_test_task:
       - curl https://keybase.io/codecovsecurity/pgp_keys.asc | gpg --no-default-keyring --keyring trustedkeys.gpg --import 
       - curl -Os https://uploader.codecov.io/latest/linux/codecov.SHA256SUM
       - curl -Os https://uploader.codecov.io/latest/linux/codecov.SHA256SUM.sig
+      - ls -a 
       - gpgv codecov.SHA256SUM.sig codecov.SHA256SUM
-      - shasum -a 256 -c codecov.SHA256SUM | touch ~/.gnupg/trustedkeys.gpg
+      - shasum -a 256 -c codecov.SHA256SUM
     populate_script:
       - curl -Os https://uploader.codecov.io/latest/linux/codecov
       - chmod +x codecov
