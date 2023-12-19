@@ -1,6 +1,4 @@
-import 'dart:ffi';
-
-import 'package:plot/core.dart' show Dataset, NumDataset, Point, Series, Utils;
+import 'package:plot/core.dart' show NumDataset;
 import 'package:test/test.dart';
 
 void main() {
