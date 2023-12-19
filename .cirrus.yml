@@ -1,0 +1,56 @@
+# Runs all the tests written in the test folder.
+
+# get a flutter container
+container:
+  image: ghcr.io/cirruslabs/flutter:3.16.4
+
+
+# Analyzes and Lints the dart code according to analysis_options.yml
+analyze_task:
+  name: Analyze and Lint
+  skip: "!changesInclude('**.{dart}')"
+  install_dependency_script: dart pub get
+  format_code_script: dart format .
+  analyze_code_script: dart analyze --fatal-infos
+
+pr_test_task:
+  name: Running Local Tests
+  skip: "!changesInclude('**.{dart}')"
+  only_if: $CIRRUS_PR != ''
+  env: 
+    CODEV_COV_TOKEN: ENCRYPTED[a67f0040a7411f8609a74b9ac81079092f3b3425cae77b6dde94cb7c5f3cd9bad2744e7485b2a25f5a35b805edc5e26e]
+  depends_on:
+    - Analyze and Lint
+  pub_cache:
+    folder: ~/.pub-cache
+  codecov_uploader_cache:
+    folder: codecov
+    fingerprint_script:
+      - sudo apt-get update
+      - echo Y | sudo apt-get install gpg-agent
+      - curl https://keybase.io/codecovsecurity/pgp_keys.asc | gpg --no-default-keyring --keyring trustedkeys.gpg --import 
+      - curl -Os https://uploader.codecov.io/latest/linux/codecov
+      - curl -Os https://uploader.codecov.io/latest/linux/codecov.SHA256SUM
+      - curl -Os https://uploader.codecov.io/latest/linux/codecov.SHA256SUM.sig
+      - gpgv -v codecov.SHA256SUM.sig codecov.SHA256SUM
+      - shasum -a 256 -c "codecov.SHA256SUM" -U
+    populate_script:
+      - curl -Os https://uploader.codecov.io/latest/linux/codecov
+      - chmod +x codecov
+    reupload_on_changes: true
+  install_lcov_script: sudo apt-get install -y lcov
+  generate_helper_file_script: chmod +x ./tool/scripts/dart-coverage-helper.sh ; sh ./tool/scripts/dart-coverage-helper.sh
+  test_script: flutter test --pub --null-assertions --coverage --coverage-path=test/coverage/report/lcov.info
+  sanitize_lcov_report_script: lcov --remove test/coverage/report/lcov.info 'lib/*/*.g.dart' 'lib/*/*.part.dart' 'lib/generated/*.dart' 'lib/generated/*/*.dart' -o test/coverage/report/lcov.info 
+  Rita_Repoter_script: ./codecov -t $CODEV_COV_TOKEN -f ./test/coverage/report/lcov.info
+      
+test_task:
+  name: LAST CHECKPOINT
+  only_if: $CIRRUS_BRANCH == 'production' 
+  depends_on:
+    - Analyze and Lint
+  pub_cache:
+    folder: ~/.pub-cache
+#  runs ```flutter pub get ``` before running the tests in the test/ folder
+#  runs additional null assertions on the boundaries of migrated and un-migrated code.
+  test_script: flutter test --null-assertions

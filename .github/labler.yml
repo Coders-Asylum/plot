@@ -1,0 +1,33 @@
+🔌 core:
+  - lib/src/core/**/*
+
+📱 widgets:
+  - lib/srv/widgest/**/* 
+
+📦 assets-update:
+  - assets/**/*
+
+🧪 test:
+  - test/*
+  - test/**/*
+
+🛄 pupspec:
+  - pubspec.yaml
+
+🛠️ cicd:
+  - .github/*
+  - .github/**/*
+  - .ci/**/*
+  - .pipelines/**/*
+  - .circleci/**/*
+
+🗄️docs:
+  - docs/**/*
+  - readMe.md
+  - ReadMe.md
+  - readme.md
+  - README.md
+  - README
+
+⛏️ tool:
+  - tool/**/*

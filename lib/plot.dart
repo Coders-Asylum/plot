@@ -1,3 +1,4 @@
+/// Support for doing something awesome.
 library plot;
 
 /// A Calculator.
