@@ -55,7 +55,7 @@ class NumDataset implements Dataset<num> {
   /// Calculates the mean of all data points.
   @override
   double get mean {
-    return Utils.mean(data.whereType<num>().cast<double>());
+    return Utils.mean(data.map((num e) => e.toDouble()));
   }
 
   /// Calculates the median of all data points.
