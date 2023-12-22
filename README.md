@@ -11,11 +11,12 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-#Plot
+# Plot
 
 [![codecov](https://codecov.io/gh/Coders-Asylum/plot/graph/badge.svg?token=JYsuCxnZw7)](https://codecov.io/gh/Coders-Asylum/plot)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/00a727b58642455b9b806557c60e9711)](https://app.codacy.com/gh/Coders-Asylum/plot/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FCoders-Asylum%2Fplot.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FCoders-Asylum%2Fplot?ref=badge_shield)
-
+<hr>
 
 
 TODO: Put a short description of the package here that helps potential users
@@ -46,4 +47,6 @@ from the package authors, and more.
 
 
 ## License
+
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FCoders-Asylum%2Fplot.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FCoders-Asylum%2Fplot?ref=badge_large)
+<hr>
