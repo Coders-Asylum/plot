@@ -13,6 +13,7 @@ and the Flutter guide for
 
 #Plot
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/344d9477c68c433bb7bde1fc17815701)](https://app.codacy.com/gh/Coders-Asylum/plot?utm_source=github.com&utm_medium=referral&utm_content=Coders-Asylum/plot&utm_campaign=Badge_Grade)
 [![codecov](https://codecov.io/gh/Coders-Asylum/plot/graph/badge.svg?token=JYsuCxnZw7)](https://codecov.io/gh/Coders-Asylum/plot)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FCoders-Asylum%2Fplot.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FCoders-Asylum%2Fplot?ref=badge_shield)
 
